@@ -27,6 +27,7 @@ lerna-debug.log*
 *.launch
 .settings/
 *.sublime-workspace
+*.excalidraw
 
 # IDE - VSCode
 .vscode/*
@@ -59,3 +60,4 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 *.sqlite
 *.sqlite3
 *.db
+/sql

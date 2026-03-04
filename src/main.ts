@@ -1,21 +1,31 @@
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { ValidationPipe } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { envs } from 'src/common/config';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.set('query parser', 'extended');
-  app.enableCors({
-    "origin": `${'*'}`,
-    "methods": "GET,PATCH,POST,DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
+
+  app.setGlobalPrefix('api');
+
+  app.enableVersioning({
+    type: VersioningType.URI,
+    defaultVersion: '1',
   });
 
-  app.setGlobalPrefix('api/v1')
+  app.enableCors({
+    origin: '*',
+    credentials: true, // Permite cookies
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key'],
+  });
   
+  // Indica qué motor de parseo usar para interpretar los parámetros de las URLs (query params).
+  app.set('query parser', 'extended');
+
+  // Para usar dto con class-transformer y class-validator
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
     forbidNonWhitelisted: true,
@@ -23,7 +33,7 @@ async function bootstrap() {
   }));
 
   const config = new DocumentBuilder()
-  .setTitle("mvp-api")
+  .setTitle("ChillHop Studio API")
   .setDescription("")
   .setVersion("1.0")
   .addBearerAuth()
@@ -31,7 +41,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("docs", app, document);
 
-  await app.listen(3000);
+  await app.listen(envs.PORT);
 }
 
 bootstrap();

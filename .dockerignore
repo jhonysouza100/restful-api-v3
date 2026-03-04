@@ -1,0 +1,42 @@
+# Ignorar archivos y directortorios que no se necesiten en la imagen de Docker
+
+# Archivos de configuracion de VsCode
+.vscode
+
+# Archivos de produccion local
+.dist
+.next
+.next-build
+migrations
+
+# Archivos de configuracion de Node.js
+node_modules
+
+# Archivos de configuracion de Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Archivos de logs y temportales
+logs
+npm-debug.log
+temp
+test
+
+# Archivos de configuracion de Git
+.git
+.gitignore
+
+# Archivos de configuracion de otros servicios
+.env
+.env.local
+.env.development
+.env.production
+
+# SEO
+robots.txt
+sitemap.xml
+sitemap-0.xml
+
+# Otros
+README.md
