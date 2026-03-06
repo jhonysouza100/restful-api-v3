@@ -5,7 +5,7 @@ import { CreateProductDto } from 'src/modules/products/dto/create-product.dto';
 import { UpdateProductDto } from 'src/modules/products/dto/update-product.dto';
 import { ProductEntity } from 'src/modules/products/entities/product.entity';
 import { Like, MoreThanOrEqual, Repository } from 'typeorm';
-import { envs } from 'src/common/config';
+import { envs } from 'src/common/config/envs';
 import { th } from 'zod/v4/locales';
 
 @Injectable()

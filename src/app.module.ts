@@ -2,7 +2,7 @@ import { createKeyv } from '@keyv/redis';
 import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { envs } from 'src/common/config';
+import { envs } from 'src/common/config/envs';
 import { ProductsModule } from 'src/modules/products/products.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { EmailsModule } from './modules/emails/emails.module';

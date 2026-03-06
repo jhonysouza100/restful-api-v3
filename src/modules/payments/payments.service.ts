@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { envs } from 'src/common/config';
+import { envs } from 'src/common/config/envs';
 import { MercadopagoResponse } from 'src/modules/payments/interfaces/mercadopago-response.interface.ts';
 import { CreateMercadopagoDto } from './dtos/create-mercadopago.dto';
 

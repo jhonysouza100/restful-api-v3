@@ -1,7 +1,7 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import type { UploadApiErrorResponse, UploadApiResponse } from "cloudinary";
 import { v2 as cloudinary } from "cloudinary";
-import { envs } from 'src/common/config';
+import { envs } from 'src/common/config/envs';
 import { ImageDataResponse } from 'src/modules/images/interfaces/image-response.interface';
 
 // Configuración de Cloudinary
