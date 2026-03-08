@@ -2,7 +2,6 @@ import { createKeyv } from '@keyv/redis';
 import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { envs } from 'src/common/config/envs';
 import { ProductsModule } from 'src/modules/products/products.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { EmailsModule } from './modules/emails/emails.module';
@@ -12,6 +11,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerBehindProxyGuard } from 'src/common/guards/trottler.guard';
 import { SheetsModule } from './modules/sheets/sheets.module';
 import { ImagesModule } from './modules/images/images.module';
+import { envs } from 'src/common/config/envs';
 
 @Module({
   imports: [
@@ -59,6 +59,9 @@ import { ImagesModule } from './modules/images/images.module';
     SheetsModule,
     ImagesModule,
   ],
-  providers: [{ provide: APP_GUARD, useClass: ThrottlerBehindProxyGuard }],
+  providers: [{ provide: APP_GUARD, useClass: ThrottlerBehindProxyGuard }, {
+      provide: 'CONFIG',
+      useValue: envs,
+    },],
 })
 export class AppModule {}
